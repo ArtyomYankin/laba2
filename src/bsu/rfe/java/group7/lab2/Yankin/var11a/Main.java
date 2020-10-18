@@ -172,9 +172,10 @@ public class Main extends JFrame {
         hboxButtons.add(buttonCalc);
         hboxButtons.add(Box.createHorizontalStrut(30));
         hboxButtons.add(buttonReset);
+        hboxButtons.add(Box.createHorizontalStrut(30));
+        hboxButtons.add(buttonSum);
         hboxButtons.add(Box.createHorizontalGlue());
-        hboxButtons.setBorder(
-                BorderFactory.createLineBorder(Color.GREEN));
+        hboxButtons.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 // Связать области воедино в компоновке BoxLayout
         Box contentBox = Box.createVerticalBox();
         contentBox.add(Box.createVerticalGlue());

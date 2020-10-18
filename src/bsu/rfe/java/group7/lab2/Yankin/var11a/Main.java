@@ -25,7 +25,7 @@ public class Main extends JFrame {
     private static final int WIDTH = 400;
     private static final int HEIGHT = 320;
     public double SUM=0.0;
-    // Текстовые поля для считывания значений переменных,
+    // Текстовые поля для ычитывания значений переменных,
 // как компоненты, совместно используемые в различных методах
     private JTextField textFieldX;
     private JTextField textFieldY;
@@ -41,10 +41,20 @@ public class Main extends JFrame {
     private int formulaId = 1;
     // Формула №1 для рассчѐта
     public Double calculate1(Double x, Double y, Double z) {
+        if (z<0) {
+            JOptionPane.showMessageDialog(Main.this,
+                    "z должна быть больше нуля", " "+
+                            "Ошибка ввода", JOptionPane.WARNING_MESSAGE);
+        }
         return (Math.sqrt((Math.log(z))+Math.sin(Math.PI*z*z))/Math.pow(y*y+Math.pow(Math.E,Math.cos(x))+Math.sin(y),Math.sin(x)));
     }
     // Формула №2 для рассчѐта
     public Double calculate2(Double x, Double y, Double z) {
+        if (z<0 || x<0) {
+            JOptionPane.showMessageDialog(Main.this,
+                    "Корень должен быть больше нуля", " "+
+                            "Ошибка ввода", JOptionPane.WARNING_MESSAGE);
+        }
         return ((1+Math.sqrt(z*x))/Math.pow(1+x*x*x, 1/y));
     }
     // Вспомогательный метод для добавления кнопок на панель
@@ -138,7 +148,7 @@ public class Main extends JFrame {
                 }
             }
         });
-        JButton buttonSum = new JButton("Сумма");
+        JButton buttonSum = new JButton("M+");
         buttonSum.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev){
                 try {

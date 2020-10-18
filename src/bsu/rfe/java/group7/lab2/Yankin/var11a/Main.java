@@ -24,6 +24,7 @@ public class Main extends JFrame {
     // Размеры окна приложения в виде констант
     private static final int WIDTH = 400;
     private static final int HEIGHT = 320;
+    public double SUM=0.0;
     // Текстовые поля для считывания значений переменных,
 // как компоненты, совместно используемые в различных методах
     private JTextField textFieldX;
@@ -144,12 +145,12 @@ public class Main extends JFrame {
                     Double x = Double.parseDouble(textFieldX.getText());
                     Double y = Double.parseDouble(textFieldY.getText());
                     Double z = Double.parseDouble(textFieldZ.getText());
-                    Double sum=0.0;
+
                     if (formulaId==1)
-                        sum+= calculate1(x, y, z);
+                        SUM += calculate1(x, y, z);
                     else
-                        sum += calculate2(x, y, z);
-                    textFieldResult.setText(sum.toString());
+                        SUM += calculate2(x, y, z);
+                    textFieldResult.setText(Double.toString(SUM));
                 }
                 catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(Main.this,
@@ -158,6 +159,12 @@ public class Main extends JFrame {
                 }
             }
         });
+        JButton buttonClearSum = new JButton("MC");
+        buttonClearSum.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent ev){
+            SUM=0.0;
+            textFieldResult.setText("0");
+        }});
         JButton buttonReset = new JButton("Очистить поля");
         buttonReset.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
@@ -170,10 +177,12 @@ public class Main extends JFrame {
         Box hboxButtons = Box.createHorizontalBox();
         hboxButtons.add(Box.createHorizontalGlue());
         hboxButtons.add(buttonCalc);
-        hboxButtons.add(Box.createHorizontalStrut(30));
+        hboxButtons.add(Box.createHorizontalStrut(15));
         hboxButtons.add(buttonReset);
-        hboxButtons.add(Box.createHorizontalStrut(30));
+        hboxButtons.add(Box.createHorizontalStrut(15));
         hboxButtons.add(buttonSum);
+        hboxButtons.add(Box.createHorizontalStrut(15));
+        hboxButtons.add(buttonClearSum);
         hboxButtons.add(Box.createHorizontalGlue());
         hboxButtons.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 // Связать области воедино в компоновке BoxLayout
